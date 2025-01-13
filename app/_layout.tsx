@@ -12,6 +12,7 @@ import "react-native-reanimated";
 
 import { useColorScheme } from "@/hooks/useColorScheme";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -34,14 +35,18 @@ export default function RootLayout() {
   }
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
+    <GestureHandlerRootView>
+      <QueryClientProvider client={queryClient}>
         <Stack>
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          <Stack.Screen
+            name="read-news"
+            options={{ title: "Read news", headerBackTitle: "back" }}
+          />
           <Stack.Screen name="+not-found" />
         </Stack>
         <StatusBar style="auto" />
-      </ThemeProvider>
-    </QueryClientProvider>
+      </QueryClientProvider>
+    </GestureHandlerRootView>
   );
 }

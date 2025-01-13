@@ -1,3 +1,4 @@
+import { Link } from "expo-router";
 import React from "react";
 import { StyleSheet } from "react-native";
 import { Card, Title, Paragraph } from "react-native-paper";
@@ -7,23 +8,31 @@ interface NewsItemProps {
   title: string;
   description: string;
   imageUrl: string;
+  url: string;
 }
 
 const NewsItem: React.FC<NewsItemProps> = ({
   title,
   description,
   imageUrl,
+  url,
 }) => {
   const { colors } = useTheme();
 
   return (
-    <Card style={[styles.card, { backgroundColor: colors.background }]}>
-      <Card.Cover source={{ uri: imageUrl }} />
-      <Card.Content>
-        <Title>{title}</Title>
-        <Paragraph>{description}</Paragraph>
-      </Card.Content>
-    </Card>
+    <Link href={{ pathname: "/read-news", params: { url: url } }}>
+      <Card style={[styles.card, { backgroundColor: colors.background }]}>
+        <Card.Cover
+          source={{ uri: imageUrl }}
+          resizeMode="cover"
+          style={{ width: "100%" }}
+        />
+        <Card.Content>
+          <Title>{title}</Title>
+          <Paragraph>{description}</Paragraph>
+        </Card.Content>
+      </Card>
+    </Link>
   );
 };
 

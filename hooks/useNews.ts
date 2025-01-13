@@ -1,9 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
 
-const fetchNews = async () => {
-  const response = await fetch(
-    "https://newsapi.org/v2/top-headlines?country=us&apiKey=xxxx"
-  );
+const fetchNews = async (query?: string) => {
+  const url = new URL("https://newsapi.org/v2/top-headlines?country=us");
+  if (query) {
+    url.searchParams.append("q", query);
+  }
+  url.searchParams.append("apiKey", "183daca270264bad86fc5b72972fb82a");
+
+  const response = await fetch(url.toString());
   if (!response.ok) {
     throw new Error("Network response was not ok");
   }
@@ -11,8 +15,11 @@ const fetchNews = async () => {
   return data.articles;
 };
 
-const useNews = () => {
-  return useQuery({ queryKey: ["news"], queryFn: fetchNews });
+const useNews = (query?: string) => {
+  return useQuery({
+    queryKey: ["news", query],
+    queryFn: () => fetchNews(query),
+  });
 };
 
 export default useNews;
