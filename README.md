@@ -1,8 +1,10 @@
-# Welcome to your Expo app 👋
+# News App!
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Read the latest curated news.
 
 ## Get started
+
+This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
 
 1. Install dependencies
 
