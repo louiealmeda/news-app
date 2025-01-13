@@ -43,7 +43,8 @@ export default function HomeScreen() {
           title={item.title}
           description={item.description}
           imageUrl={item.urlToImage}
-          url={item.url}
+          source={item.source.name}
+          publishedAt={item.publishedAt}
         />
       )}
       ListHeaderComponent={

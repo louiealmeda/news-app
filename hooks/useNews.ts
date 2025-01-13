@@ -5,7 +5,7 @@ const fetchNews = async (query?: string) => {
   if (query) {
     url.searchParams.append("q", query);
   }
-  url.searchParams.append("apiKey", "183daca270264bad86fc5b72972fb82a");
+  url.searchParams.append("apiKey", "");
 
   const response = await fetch(url.toString());
   if (!response.ok) {
